@@ -15,8 +15,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.edu.seu.jeremy.weather.R;
 import cn.edu.seu.jeremy.weather.base.BaseFragment;
 import cn.edu.seu.jeremy.weather.contract.WeatherContract;
@@ -155,7 +153,7 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.IVi
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         dailyDetail.setLayoutManager(manager);
-        dailyDetail.setAdapter(new DailyAdapter(null));
+        dailyDetail.setAdapter(new DailyAdapter(getActivity(), null));
 
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);

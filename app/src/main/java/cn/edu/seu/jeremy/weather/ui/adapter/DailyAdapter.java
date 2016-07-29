@@ -6,7 +6,10 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -14,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.edu.seu.jeremy.weather.R;
 import cn.edu.seu.jeremy.weather.entity.WeatherInfo;
+import cn.edu.seu.jeremy.weather.rest.WeatherApi;
 import cn.edu.seu.jeremy.weather.util.DateUtil;
 
 /**
@@ -22,11 +26,14 @@ import cn.edu.seu.jeremy.weather.util.DateUtil;
  */
 public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHolder> {
 
+    private Context mContext;
+
     private List<WeatherInfo.DailyForecastBean> mDailyBeans;
 
     private List<String> mWeeks;
 
-    public DailyAdapter(List<WeatherInfo.DailyForecastBean> dailyBeans) {
+    public DailyAdapter(Context context, List<WeatherInfo.DailyForecastBean> dailyBeans) {
+        mContext = context;
         setDailys(dailyBeans);
         mWeeks = DateUtil.getNextSixDay();
     }
@@ -46,7 +53,8 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     public void onBindViewHolder(DailyViewHolder holder, int position) {
         WeatherInfo.DailyForecastBean bean = mDailyBeans.get(position);
         holder.weatherTodayText.setText(mWeeks.get(position));
-        holder.weatherTodayCond.setText(bean.getCond().getTxtD());
+        String url = WeatherApi.ICON_URL + bean.getCond().getCodeD() + WeatherApi.ICON_EXTENSION;
+        Picasso.with(mContext).load(url).into(holder.weatherTodayCond);
         holder.weatherTodayHighTemp.setText(bean.getTmp().getMax());
         holder.weatherTodayLowTemp.setText(bean.getTmp().getMin());
     }
@@ -57,11 +65,11 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         return mDailyBeans.size();
     }
 
-    static class DailyViewHolder extends RecyclerView.ViewHolder {
+     static class DailyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView weatherTodayText;
 
-        private TextView weatherTodayCond;
+        private ImageView weatherTodayCond;
 
         private TextView weatherTodayLowTemp;
 
@@ -70,7 +78,7 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         public DailyViewHolder(View view) {
             super(view);
             weatherTodayText = (TextView) view.findViewById(R.id.weather_today_text);
-            weatherTodayCond = (TextView) view.findViewById(R.id.weather_today_cond);
+            weatherTodayCond = (ImageView) view.findViewById(R.id.weather_today_cond);
             weatherTodayLowTemp = (TextView) view.findViewById(R.id.weather_today_low_temp);
             weatherTodayHighTemp = (TextView) view.findViewById(R.id.weather_today_high_temp);
         }

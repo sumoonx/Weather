@@ -4,11 +4,14 @@
     android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/backgroud">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/weather_top_space"/>
 
         <TextView
             android:id="@+id/weather_brief_city"
@@ -28,18 +31,33 @@
             android:layout_margin="@dimen/weather_cond_margin"
             android:text="晴转多云"/>
 
-        <TextView
-            android:id="@+id/weather_brief_temp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="@dimen/weather_temp_size"
-            android:layout_margin="@dimen/weather_temp_margin"
-            android:text="38"/>
+            android:layout_height="@dimen/weather_temp_height">
+
+            <TextView
+                android:id="@+id/weather_brief_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/weather_temp_height"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/weather_temp_size"
+                android:layout_margin="@dimen/weather_temp_margin"
+                android:text="38"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/weather_temp_height"
+                android:layout_toRightOf="@id/weather_brief_temp"
+                android:textSize="@dimen/weather_temp_size"
+                android:layout_margin="@dimen/weather_temp_margin"
+                android:text="@string/temp_unit"/>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/weather_today_height">
+            android:layout_height="@dimen/weather_today_height"
+            android:paddingStart="@dimen/padding_horizental"
+            android:paddingEnd="@dimen/padding_horizental">
             <TextView
                 android:id="@+id/weather_today"
                 android:layout_width="wrap_content"
@@ -81,28 +99,36 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/hour_detail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/weather_hour_detail_height"/>
+            android:layout_height="@dimen/weather_hour_detail_height"
+            android:paddingStart="@dimen/padding_horizental"
+            android:paddingEnd="@dimen/padding_horizental"/>
 
         <include layout="@layout/divider" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/daily_detail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/weather_day_height"/>
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/padding_horizental"
+            android:paddingEnd="@dimen/padding_horizental"/>
 
         <include layout="@layout/divider" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/weather_today_suggestion"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/weather_today_sugg_height"/>
+            android:layout_height="@dimen/weather_today_sugg_height"
+            android:paddingStart="@dimen/padding_horizental"
+            android:paddingEnd="@dimen/padding_horizental"/>
 
         <include layout="@layout/divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/padding_horizental"
+            android:paddingEnd="@dimen/padding_horizental">
 
             <LinearLayout
                 android:layout_width="0dp"

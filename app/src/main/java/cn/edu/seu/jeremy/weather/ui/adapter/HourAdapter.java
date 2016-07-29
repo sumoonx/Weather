@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import cn.edu.seu.jeremy.weather.R;
 import cn.edu.seu.jeremy.weather.entity.WeatherInfo;
 import cn.edu.seu.jeremy.weather.util.LogUtil;
+import cn.edu.seu.jeremy.weather.util.UnitUtil;
 
 /**
  * Author: Jeremy Xu on 2016/7/29 15:35
@@ -44,7 +45,7 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
         WeatherInfo.HourlyForecastBean bean = mHours.get(position);
         String hour = bean.getDate().split(" ")[1].split(":")[0] + "时";
         holder.hourText.setText(hour);
-        holder.hourWeatherCond.setText(bean.getPop());
+        holder.hourWeatherCond.setText(UnitUtil.percentage(bean.getPop()));
         holder.hourTemp.setText(bean.getTmp());
     }
 

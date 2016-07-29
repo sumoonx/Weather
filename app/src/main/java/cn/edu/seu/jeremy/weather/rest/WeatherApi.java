@@ -15,6 +15,10 @@ public interface WeatherApi {
 
     String KEY = "91f83356a8134719bbd575df56056ec1";
 
+    String ICON_URL = "http://files.heweather.com/cond_icon/";
+
+    String ICON_EXTENSION = ".png";
+
     @GET("weather")
     Observable<WeatherInfoRaw> getWeather(@Query("city") String city, @Query("key") String key);
 }
