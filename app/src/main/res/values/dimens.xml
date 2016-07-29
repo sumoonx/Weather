@@ -1,0 +1,43 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="weather_city_name_size">40sp</dimen>
+    <dimen name="weather_city_name_margin">2dp</dimen>
+
+    <dimen name="weather_cond_size">22sp</dimen>
+    <dimen name="weather_cond_margin">2dp</dimen>
+
+    <dimen name="weather_temp_size">80sp</dimen>
+    <dimen name="weather_temp_margin">2dp</dimen>
+
+    <dimen name="weather_today_size">20sp</dimen>
+    <dimen name="weather_today_margin">10dp</dimen>
+    <dimen name="weather_today_height">45dp</dimen>
+    <dimen name="weather_day_height">180dp</dimen>
+
+    <dimen name="weather_hour_item_width">120dp</dimen>
+    <dimen name="weather_hour_detail_height">70dp</dimen>
+    <dimen name="weather_hour_temp_size">12sp</dimen>
+    <dimen name="weather_hour_temp_margin">2dp</dimen>
+
+    <dimen name="weather_text_size">20sp</dimen>
+    <dimen name="weather_text_margin">2dp</dimen>
+
+    <dimen name="weather_divider_height">2dp</dimen>
+
+    <dimen name="weather_today_sugg_height">100dp</dimen>
+    <dimen name="weather_today_sugg_title_size">20sp</dimen>
+    <dimen name="weather_today_sugg_title_margin">2dp</dimen>
+    <dimen name="weather_today_sugg_size">16sp</dimen>
+    <dimen name="weather_today_sugg_margin">2dp</dimen>
+
+    <dimen name="weather_today_detail_size">15sp</dimen>
+    <dimen name="weather_today_detail_margin">1dp</dimen>
+    <dimen name="weather_today_detail_padding">10dp</dimen>
+    <dimen name="weather_today_detail_devide_margin">2dp</dimen>
+
+</resources>

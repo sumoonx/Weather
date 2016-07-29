@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/weather_today_sugg_height"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/weather_today_index"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textSize="@dimen/weather_today_sugg_title_size"
+        android:layout_margin="@dimen/weather_today_sugg_title_margin"
+        android:text="穿衣指数"/>
+
+    <TextView
+        android:id="@+id/weather_today_sugg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textSize="@dimen/weather_today_sugg_size"
+        android:layout_margin="@dimen/weather_today_sugg_margin"
+        android:text="今天不错呀，可以出去走一走"/>
+    
+</LinearLayout>
