@@ -35,6 +35,8 @@ import cn.edu.seu.jeremy.weather.util.UnitUtil;
  */
 public class WeatherFragment extends BaseFragment implements WeatherContract.IView {
 
+    private static final String CITY_NAME = "city_name";
+
     @BindView(R.id.weather_brief_city)
     protected TextView mBriefCity;
 
@@ -80,13 +82,21 @@ public class WeatherFragment extends BaseFragment implements WeatherContract.IVi
     @Inject
     protected WeatherPresenter presenter;
 
-    @Inject
-    public WeatherFragment() {
-        mCity = "南京";
+    public static WeatherFragment newInstance(String city) {
+        WeatherFragment fragment = new WeatherFragment();
+        Bundle args = new Bundle();
+        args.putString(CITY_NAME, city);
+        fragment.setArguments(args);
+        return fragment;
     }
 
-    public static WeatherFragment newInstance() {
-        return new WeatherFragment();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mCity = getArguments().getString(CITY_NAME);
+        }
     }
 
     @Override

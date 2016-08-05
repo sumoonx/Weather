@@ -2,6 +2,9 @@ package cn.edu.seu.jeremy.weather.inject.module;
 
 import android.content.Context;
 
+import javax.inject.Singleton;
+
+import cn.edu.seu.jeremy.weather.repository.CityInfoDB;
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,12 +18,20 @@ public final class ApplicationModule {
 
     private final Context mContext;
 
+    private final CityInfoDB cityInfoDB;
+
     public ApplicationModule(Context context) {
         mContext = context;
+        cityInfoDB = new CityInfoDB(context);
     }
 
     @Provides
     Context provideContext() {
         return mContext;
+    }
+
+    @Singleton @Provides
+    CityInfoDB provideCityInfoDB() {
+        return cityInfoDB;
     }
 }

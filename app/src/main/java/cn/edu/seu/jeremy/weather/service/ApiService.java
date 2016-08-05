@@ -4,19 +4,24 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import cn.edu.seu.jeremy.weather.entity.CityInfo;
+import cn.edu.seu.jeremy.weather.entity.CityInfoRaw;
 import cn.edu.seu.jeremy.weather.entity.WeatherInfo;
 import cn.edu.seu.jeremy.weather.entity.WeatherInfoRaw;
 import cn.edu.seu.jeremy.weather.rest.WeatherApi;
+import cn.edu.seu.jeremy.weather.util.LogUtil;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -45,19 +50,28 @@ public class ApiService implements WeatherService {
     @Override
     public Observable<WeatherInfo> getWeatherInfo(String city) {
         return mWeatherApi.getWeather(city, WeatherApi.KEY)
-                .flatMap(new Func1<WeatherInfoRaw, Observable<WeatherInfoRaw>>() {
+                .flatMap(new Func1<WeatherInfoRaw, Observable<WeatherInfo>>() {
                     @Override
-                    public Observable<WeatherInfoRaw> call(WeatherInfoRaw weatherInfoRaw) {
+                    public Observable<WeatherInfo> call(WeatherInfoRaw weatherInfoRaw) {
                         if (weatherInfoRaw.getWeatherInfos().get(0).getStatus().equals("no more requests")) {
-                            return Observable.error(new RuntimeException("/(ㄒoㄒ)/~~,API免费次数已用完"));
+                            return Observable.error(new RuntimeException("Weather API免费次数已用完"));
                         }
-                        return Observable.just(weatherInfoRaw);
+                        return Observable.from(weatherInfoRaw.getWeatherInfos());
                     }
                 })
-                .map(new Func1<WeatherInfoRaw, WeatherInfo>() {
+                .unsubscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<List<CityInfo>> getCityInfo() {
+        return mWeatherApi.getCities("allchina", WeatherApi.KEY)
+                .map(new Func1<CityInfoRaw, List<CityInfo>>() {
                     @Override
-                    public WeatherInfo call(WeatherInfoRaw weatherInfoRaw) {
-                        return weatherInfoRaw.getWeatherInfos().get(0);
+                    public List<CityInfo> call(CityInfoRaw cityInfoRaw) {
+                        LogUtil.i("status is: " + cityInfoRaw.getStatus());
+                        return cityInfoRaw.getCityInfos();
                     }
                 })
                 .unsubscribeOn(AndroidSchedulers.mainThread())

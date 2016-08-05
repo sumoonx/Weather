@@ -2,9 +2,11 @@ package cn.edu.seu.jeremy.weather.inject.component;
 
 import javax.inject.Singleton;
 
+import cn.edu.seu.jeremy.weather.repository.CityInfoDB;
 import cn.edu.seu.jeremy.weather.inject.module.ApiServiceModule;
 import cn.edu.seu.jeremy.weather.inject.module.ApplicationModule;
 import cn.edu.seu.jeremy.weather.service.WeatherService;
+import cn.edu.seu.jeremy.weather.ui.CityFragment;
 import dagger.Component;
 
 /**
@@ -16,4 +18,8 @@ import dagger.Component;
 public interface ApiServiceComponent {
 
     WeatherService getWeatherService();
+
+    CityInfoDB getCityInfoDB();
+
+    void inject(CityFragment fragment);
 }

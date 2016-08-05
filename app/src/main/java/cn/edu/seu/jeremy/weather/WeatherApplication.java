@@ -5,6 +5,7 @@ import android.app.Application;
 import cn.edu.seu.jeremy.weather.inject.component.ApiServiceComponent;
 import cn.edu.seu.jeremy.weather.inject.component.DaggerApiServiceComponent;
 import cn.edu.seu.jeremy.weather.inject.module.ApiServiceModule;
+import cn.edu.seu.jeremy.weather.inject.module.ApplicationModule;
 
 /**
  * Author: Jeremy Xu on 2016/7/29 09:48
@@ -19,6 +20,7 @@ public class WeatherApplication extends Application {
         super.onCreate();
 
         mApiServiceComponent = DaggerApiServiceComponent.builder()
+                .applicationModule(new ApplicationModule(getApplicationContext()))
                 .apiServiceModule(new ApiServiceModule(getApplicationContext()))
                 .build();
     }

@@ -1,5 +1,8 @@
 package cn.edu.seu.jeremy.weather.service;
 
+import java.util.List;
+
+import cn.edu.seu.jeremy.weather.entity.CityInfo;
 import cn.edu.seu.jeremy.weather.entity.WeatherInfo;
 import rx.Observable;
 
@@ -9,4 +12,6 @@ import rx.Observable;
  */
 public interface WeatherService {
     Observable<WeatherInfo> getWeatherInfo(String city);
+
+    Observable<List<CityInfo>> getCityInfo();
 }

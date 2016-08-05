@@ -1,7 +1,5 @@
 package cn.edu.seu.jeremy.weather.presenter;
 
-import android.widget.Toast;
-
 import javax.inject.Inject;
 
 import cn.edu.seu.jeremy.weather.contract.WeatherContract;
@@ -9,7 +7,6 @@ import cn.edu.seu.jeremy.weather.entity.WeatherInfo;
 import cn.edu.seu.jeremy.weather.service.WeatherService;
 import cn.edu.seu.jeremy.weather.util.LogUtil;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Author: Jeremy Xu on 2016/7/28 22:05

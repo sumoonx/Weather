@@ -14,4 +14,5 @@ import dagger.Component;
 public interface WeatherComponent {
 
     void inject(WeatherFragment fragment);
+
 }

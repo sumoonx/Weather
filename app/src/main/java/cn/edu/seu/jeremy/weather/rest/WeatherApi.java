@@ -1,5 +1,6 @@
 package cn.edu.seu.jeremy.weather.rest;
 
+import cn.edu.seu.jeremy.weather.entity.CityInfoRaw;
 import cn.edu.seu.jeremy.weather.entity.WeatherInfoRaw;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -21,4 +22,7 @@ public interface WeatherApi {
 
     @GET("weather")
     Observable<WeatherInfoRaw> getWeather(@Query("city") String city, @Query("key") String key);
+
+    @GET("citylist")
+    Observable<CityInfoRaw> getCities(@Query("search") String type, @Query("key") String key);
 }
